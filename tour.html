@@ -3,44 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>대한민국 지역별 관광 탐색기</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>대한민국 지역별 관광 정보 탐색기</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-slate-50 min-h-screen text-slate-800">
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <header class="flex justify-between items-center mb-8 border-b pb-4">
-      <h1 class="text-2xl font-extrabold text-slate-900">🗺️ 지역별 관광정보</h1>
-      <a href="favorites.html" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold px-4 py-2 rounded-lg shadow transition">
-        ❤️ 찜 보관함 보기
-      </a>
+<body>
+  <div class="container">
+    <header>
+      <h1>🗺️ 지역별 관광정보 & 찜 보관함</h1>
+      <p>지역을 선택해 관광지를 탐색하고, 원하는 관광지를 찜해 나만의 보관함에 담아보세요.</p>
     </header>
 
-    <!-- 지역 선택 컨트롤[cite: 2] -->
-    <section class="max-w-md mx-auto bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex items-center gap-3">
-      <label for="areaSelect" class="font-bold text-slate-700 whitespace-nowrap">지역 선택:</label>
-      <select id="areaSelect" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg p-2.5">
-        <option value="">-- 지역을 선택하세요 --</option>
-        <option value="1">서울</option>
-        <option value="2">인천</option>
-        <option value="3">대전</option>
-        <option value="4">대구</option>
-        <option value="5">광주</option>
-        <option value="6">부산</option>
-        <option value="7">울산</option>
-        <option value="8">세종</option>
-        <option value="31">경기도</option>
-        <option value="32">강원특별자치도</option>
-        <option value="39">제주도</option>
-      </select>
+    <!-- 탭 메뉴 (메인 탐색기 <-> 찜 보관함) -->
+    <nav class="tab-nav">
+      <button id="tabMainBtn" class="tab-btn active">🗺️ 관광지 탐색</button>
+      <button id="tabFavBtn" class="tab-btn">❤️ 찜 보관함 (<span id="favCount">0</span>)</button>
+    </nav>
+
+    <!-- 1. 메인 탐색 뷰 -->
+    <section id="mainSection" class="view-section">
+      <div class="controls">
+        <label for="areaSelect">지역 선택:</label>
+        <select id="areaSelect">
+          <option value="">-- 지역을 선택하세요 --</option>
+          <option value="1">서울</option>
+          <option value="2">인천</option>
+          <option value="3">대전</option>
+          <option value="4">대구</option>
+          <option value="5">광주</option>
+          <option value="6">부산</option>
+          <option value="7">울산</option>
+          <option value="8">세종</option>
+          <option value="31">경기도</option>
+          <option value="32">강원특별자치도</option>
+          <option value="39">제주도</option>
+        </select>
+      </div>
+
+      <div id="statusInfo" class="status-info"></div>
+      <div id="loading" class="loading hidden">데이터를 불러오는 중입니다...</div>
+
+      <!-- 시각화 목록 뷰 카드 그리드 -->
+      <main id="tourGrid" class="tour-grid hidden"></main>
     </section>
 
-    <div id="statusInfo" class="text-center text-sm font-medium text-slate-600 mb-4"></div>
-    <div id="loading" class="hidden text-center py-8 font-bold text-blue-600">데이터를 불러오는 중입니다...</div>
-
-    <!-- 관광지 이미지 카드 시각화 목록 뷰[cite: 2] -->
-    <main id="tourGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></main>
+    <!-- 2. 찜 보관함 뷰 -->
+    <section id="favSection" class="view-section hidden">
+      <div class="fav-header">
+        <h2>내 찜 목록</h2>
+      </div>
+      <div id="favEmptyMsg" class="empty-msg hidden">찜한 관광지가 없습니다.</div>
+      <main id="favGrid" class="tour-grid"></main>
+    </section>
   </div>
 
-  <script type="module" src="./src/main.js"></script>
+  <!-- ES Module 방식으로 스크립트 로드 -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
