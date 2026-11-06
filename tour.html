@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>대한민국 지역별 관광 탐색기</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <header class="flex justify-between items-center mb-8 border-b pb-4">
+      <h1 class="text-2xl font-extrabold text-slate-900">🗺️ 지역별 관광정보</h1>
+      <a href="favorites.html" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold px-4 py-2 rounded-lg shadow transition">
+        ❤️ 찜 보관함 보기
+      </a>
+    </header>
+
+    <!-- 지역 선택 컨트롤[cite: 2] -->
+    <section class="max-w-md mx-auto bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex items-center gap-3">
+      <label for="areaSelect" class="font-bold text-slate-700 whitespace-nowrap">지역 선택:</label>
+      <select id="areaSelect" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg p-2.5">
+        <option value="">-- 지역을 선택하세요 --</option>
+        <option value="1">서울</option>
+        <option value="2">인천</option>
+        <option value="3">대전</option>
+        <option value="4">대구</option>
+        <option value="5">광주</option>
+        <option value="6">부산</option>
+        <option value="7">울산</option>
+        <option value="8">세종</option>
+        <option value="31">경기도</option>
+        <option value="32">강원특별자치도</option>
+        <option value="39">제주도</option>
+      </select>
+    </section>
+
+    <div id="statusInfo" class="text-center text-sm font-medium text-slate-600 mb-4"></div>
+    <div id="loading" class="hidden text-center py-8 font-bold text-blue-600">데이터를 불러오는 중입니다...</div>
+
+    <!-- 관광지 이미지 카드 시각화 목록 뷰[cite: 2] -->
+    <main id="tourGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></main>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
